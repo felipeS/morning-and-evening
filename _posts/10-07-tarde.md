@@ -1,14 +1,14 @@
 ---
 title: 'Mañana, 10 de Julio'
-excerpt: '...conciudadanos de los santos y miembros de la familia de Dios'
+excerpt: '...conciudadanos de los santos y miembros de la familia de Dios.'
 date: '2022-07-10'
-verse: '...conciudadanos de los santos y miembros de la familia de Dios'
+verse: '...conciudadanos de los santos y miembros de la familia de Dios.'
 cite: 'Efesios 2:19 RVR1960'
 author:
   name: Charles Spurgeon
   picture: '/assets/blog/authors/charles-spurgeon.jpeg'
 ogImage:
-  url: '/assets/blog/preview/cover.jpg'
+  url: '/assets/previewOg.png'
 ---
 ¿Qué significa decir que somos "ciudadanos del cielo"? Significa que estamos bajo el gobierno del cielo. Cristo, el rey del cielo, reina en nuestros corazones; nuestra oración diaria es: "Hágase tu voluntad, así en la tierra como en el cielo" (Mateo 6:10 LBLA). Recibimos libremente las proclamaciones que salen del trono de la gloria; obedecemos alegremente los decretos del gran Rey. 
 
