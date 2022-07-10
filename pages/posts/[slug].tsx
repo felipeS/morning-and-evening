@@ -34,15 +34,15 @@ export default function Post({ post, morePosts, preview }: Props) {
             <article className="mb-32">
               <Head>
                 <title>
-                  {post.title} | Next.js Blog Example with {CMS_NAME}
+                  {post.title} | Mañana y Tarde devocionales por Charles Spurgeon  {CMS_NAME}
                 </title>
                 <meta property="og:image" content={post.ogImage.url} />
               </Head>
               <PostHeader
                 title={post.title}
-                coverImage={post.coverImage}
-                date={post.date}
                 author={post.author}
+                verse={post.verse}
+                cite={post.cite}
               />
               <PostBody content={post.content} />
             </article>
@@ -68,6 +68,8 @@ export async function getStaticProps({ params }: Params) {
     'content',
     'ogImage',
     'coverImage',
+    'verse',
+    'cite',
   ])
   const content = await markdownToHtml(post.content || '')
 

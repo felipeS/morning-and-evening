@@ -2,6 +2,9 @@ module.exports = {
   content: ['./components/**/*.tsx', './pages/**/*.tsx'],
   theme: {
     extend: {
+      fontFamily: {
+        'serif': ['Source Serif Pro', 'Gill Sans Nova', 'Gill Sans MT', 'Lato']
+      },
       colors: {
         'accent-1': '#FAFAFA',
         'accent-2': '#EAEAEA',
@@ -23,6 +26,7 @@ module.exports = {
         '6xl': '2.75rem',
         '7xl': '4.5rem',
         '8xl': '6.25rem',
+        'lg': '1.35rem',
       },
       boxShadow: {
         sm: '0 5px 10px rgba(0, 0, 0, 0.12)',

@@ -11,6 +11,8 @@ type PostType = {
     url: string
   }
   content: string
+  verse: string
+  cite: string
 }
 
 export default PostType
