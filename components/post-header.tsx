@@ -38,7 +38,7 @@ const Verse = ({verse, cite}: VerseProps) => {
       <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight md:leading-none mb-12 text-center">
         {verse}
         <br />
-        <small className='text-center text-lg font-medium tracking-normal'>{cite}</small>
+        <small className='text-center text-base font-medium tracking-normal'>{cite}</small>
       </h2>
     </>
   )

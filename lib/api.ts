@@ -4,6 +4,22 @@ import matter from 'gray-matter'
 
 const postsDirectory = join(process.cwd(), '_posts')
 
+function getAllFiles(dirPath: string, arrayOfFiles: string[]) {
+  const files = fs.readdirSync(dirPath)
+
+  arrayOfFiles = arrayOfFiles || []
+
+  files.forEach(function(file) {
+    if (fs.statSync(dirPath + "/" + file).isDirectory()) {
+      arrayOfFiles = getAllFiles(dirPath + "/" + file, arrayOfFiles)
+    } else {
+      arrayOfFiles.push(join(dirPath, "/", file))
+    }
+  })
+
+  return arrayOfFiles
+}
+
 export function getPostSlugs() {
   return fs.readdirSync(postsDirectory)
 }
