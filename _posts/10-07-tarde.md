@@ -1,7 +1,7 @@
 ---
 title: 'Mañana, 10 de Julio'
 excerpt: '...conciudadanos de los santos y miembros de la familia de Dios'
-date: '2022-03-16T05:35:07.322Z'
+date: '2022-07-10'
 verse: '...conciudadanos de los santos y miembros de la familia de Dios'
 cite: 'Efesios 2:19 RVR1960'
 author:
