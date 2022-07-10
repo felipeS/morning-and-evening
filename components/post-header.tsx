@@ -35,7 +35,7 @@ type VerseProps = {
 const Verse = ({verse, cite}: VerseProps) => {
   return (
     <>
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif italic font-bold leading-relaxed mb-12 mt-10 text-center">
+      <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif italic font-bold  mb-12 mt-10 text-center">
         {verse}
         <br />
         <small className='text-center text-base font-sans not-italic font-light tracking-normal'>{cite}</small>
