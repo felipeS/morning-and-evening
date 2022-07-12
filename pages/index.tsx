@@ -5,11 +5,10 @@ import Intro from '../components/intro'
 import Layout from '../components/layout'
 import { getAllPosts } from '../lib/api'
 import Head from 'next/head'
-import { CMS_NAME } from '../lib/constants'
-import Post from '../interfaces/post'
+import { PostType } from '../interfaces/post'
 
 type Props = {
-  allPosts: Post[]
+  allPosts: PostType[]
 }
 
 export default function Index({ allPosts }: Props) {
