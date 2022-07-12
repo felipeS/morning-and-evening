@@ -33,7 +33,7 @@ export default function Post({ post, morePosts, preview }: Props) {
             <article className="mb-32">
               <Head>
                 <title>
-                  {post.title} | Mañana y Tarde devocionales por Charles Spurgeon
+                  {post.title} | Mañana y Noche devocionales por Charles Spurgeon
                 </title>
                 <meta property="og:image" content="/assets/previewOg.png" />
               </Head>

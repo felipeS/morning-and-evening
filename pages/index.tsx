@@ -19,7 +19,7 @@ export default function Index({ allPosts }: Props) {
     <>
       <Layout>
         <Head>
-          <title>Mañana y Tarde por Charles Spurgeon</title>
+          <title>Mañana y Noche por Charles Spurgeon</title>
         </Head>
         <Container>
           <Intro />

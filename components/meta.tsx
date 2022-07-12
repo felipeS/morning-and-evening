@@ -34,7 +34,7 @@ const Meta = () => {
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
       <meta
         name="description"
-        content="Devocionales diarios para el dia y la tarde."
+        content="Devocionales diarios para el dia y la noche."
       />
       <meta property="og:image" content={HOME_OG_IMAGE_URL} />
     </Head>
