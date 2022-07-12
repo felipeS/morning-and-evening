@@ -2,8 +2,8 @@
 title: 'Tarde, 10 de Julio'
 excerpt: 'Y cayó la noche, y llegó la mañana. Ése fue el primer día.'
 date: '2022-07-10T18:00:00'
-verse: 'Y cayó la noche, y llegó la mañana. Ése fue el primer día.'
-cite: 'Génesis 1:5 TLA'
+verses:
+ - {text: "Y cayó la noche, y llegó la mañana. Ése fue el primer día.", cite: "Génesis 1:5 TLA"}
 author:
   name: Charles Spurgeon
   picture: '/assets/blog/authors/charles-spurgeon.jpeg'
@@ -12,8 +12,8 @@ ogImage:
 ---
 La noche era "tinieblas" y la mañana era "luz", y sin embargo las dos juntas son llamadas con el nombre que se da a la luz solamente. Esto es bastante sorprendente, pero tiene una analogía exacta en nuestra experiencia espiritual. En cada creyente hay tinieblas y luz, y sin embargo no se nos debe llamar "pecadores" porque hay pecado en nosotros; se nos debe llamar "santos" porque poseemos algún grado de santidad. Este es un pensamiento muy reconfortante para aquellos que se lamentan de sus debilidades, aquellos que se preguntan: "¿Puedo ser un hijo de Dios mientras hay tanta oscuridad en mí?"
 
-Sí. Tú, como el día, no tomas tu nombre de la noche sino de la mañana; se habla de ti en la Palabra de Dios como si ya ahora fueras perfectamente santo, como lo serás en el futuro. Se te llama hijo de la luz, aunque todavía hay oscuridad en ti. Se te nombra por la cualidad predominante a los ojos de Dios, que un día será el único principio restante. 
+Sí. Tú, como el día, no tomas tu nombre de la noche sino de la mañana; se habla de ti en la Palabra de Dios como si ya ahora fueras perfectamente santo, como lo serás en el futuro. Se te llama hijo de la luz, aunque todavía hay oscuridad en ti. Se te nombra por la cualidad predominante a los ojos de Dios, que un día será el único principio restante.
 
-Observa en la Escritura de hoy que la noche es lo primero. Naturalmente, las tinieblas son lo primero en el orden del tiempo, y la tristeza es a menudo nuestra emoción principal, que nos lleva a clamar con profunda humillación: "¡Oh Dios, ten compasión de mí, que soy pecador!" (Lucas 18:13 NVI). La posición de la mañana es la segunda: amanece cuando la gracia vence nuestra naturaleza humana. John Bunyan tenía un adagio bendito: "Lo que es último, dura para siempre". Lo que es primero cede en el tiempo a lo último, pero nada viene después de lo último. Así que aunque seas naturalmente oscuridad, una vez que te has convertido en luz en el Señor, no hay noche que siga: "Tu sol no volverá a ponerse" (Isaías 60:20 NVI). 
+Observa en la Escritura de hoy que la noche es lo primero. Naturalmente, las tinieblas son lo primero en el orden del tiempo, y la tristeza es a menudo nuestra emoción principal, que nos lleva a clamar con profunda humillación: "¡Oh Dios, ten compasión de mí, que soy pecador!" (Lucas 18:13 NVI). La posición de la mañana es la segunda: amanece cuando la gracia vence nuestra naturaleza humana. John Bunyan tenía un adagio bendito: "Lo que es último, dura para siempre". Lo que es primero cede en el tiempo a lo último, pero nada viene después de lo último. Así que aunque seas naturalmente oscuridad, una vez que te has convertido en luz en el Señor, no hay noche que siga: "Tu sol no volverá a ponerse" (Isaías 60:20 NVI).
 
 El primer día en esta vida es una noche y una mañana. Pero el segundo día, cuando estemos con Dios para siempre, será un día sin noche, sólo un mediodía sagrado, alto y eterno.

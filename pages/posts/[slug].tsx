@@ -8,9 +8,8 @@ import Layout from '../../components/layout'
 import { getPostBySlug, getAllPosts } from '../../lib/api'
 import PostTitle from '../../components/post-title'
 import Head from 'next/head'
-import { CMS_NAME } from '../../lib/constants'
 import markdownToHtml from '../../lib/markdownToHtml'
-import type PostType from '../../interfaces/post'
+import { PostType } from '../../interfaces/post'
 
 type Props = {
   post: PostType
@@ -34,16 +33,17 @@ export default function Post({ post, morePosts, preview }: Props) {
             <article className="mb-32">
               <Head>
                 <title>
-                  {post.title} | Mañana y Tarde devocionales por Charles Spurgeon  {CMS_NAME}
+                  {post.title} | Mañana y Tarde devocionales por Charles Spurgeon
                 </title>
-                <meta property="og:image" content={post.ogImage.url} />
+                <meta property="og:image" content="/assets/previewOg.png" />
               </Head>
-              <PostHeader
-                title={post.title}
-                author={post.author}
-                verse={post.verse}
-                cite={post.cite}
-              />
+              <div className='mb-12 md:mb-16'>
+                <PostHeader
+                  title={post.title}
+                  author={post.author}
+                  verses={post.verses}
+                />
+              </div>
               <PostBody content={post.content} />
             </article>
           </>
@@ -70,6 +70,7 @@ export async function getStaticProps({ params }: Params) {
     'coverImage',
     'verse',
     'cite',
+    'verses'
   ])
   const content = await markdownToHtml(post.content || '')
 

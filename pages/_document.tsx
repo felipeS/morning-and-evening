@@ -9,7 +9,7 @@ export default class MyDocument extends Document {
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet" />
         </Head>
-        <body>
+        <body className='text-stone-800'>
           <Main />
           <NextScript />
         </body>

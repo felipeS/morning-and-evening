@@ -1,17 +1,15 @@
 import Avatar from './avatar'
-import DateFormatter from './date-formatter'
-import CoverImage from './cover-image'
 import PostTitle from './post-title'
 import type Author from '../interfaces/author'
+import { Verse } from '../interfaces/post'
 
 type PostHeaderProps = {
   title: string
   author: Author
-  verse: string
-  cite: string
+  verses: Verse[]
 }
 
-const PostHeader = ({ title, author, verse, cite }: PostHeaderProps) => {
+const PostHeader = ({ title, author, verses }: PostHeaderProps) => {
   return (
     <>
       <PostTitle>{title}</PostTitle>
@@ -23,7 +21,11 @@ const PostHeader = ({ title, author, verse, cite }: PostHeaderProps) => {
           <Avatar name={author.name} picture={author.picture} />
         </div>
       </div>
-      <Verse verse={verse} cite={cite} />
+      <div className='max-w-4xl mx-auto'>
+        {verses.map((verse) => (
+          <Verse verse={verse.text} cite={verse.cite} />
+        ))}
+      </div>
     </>
   )
 }
@@ -34,13 +36,10 @@ type VerseProps = {
 }
 const Verse = ({verse, cite}: VerseProps) => {
   return (
-    <>
-      <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif italic font-bold  mb-12 mt-10 text-center">
-        {verse}
-        <br />
-        <small className='text-center text-base font-sans not-italic font-light tracking-normal'>{cite}</small>
-      </h2>
-    </>
+    <h2 className="text-2xl md:text-3xl lg:text-4xl font-serif italic font-bold lg:leading-normal mt-5 mb-7 text-center">
+      {verse}
+      <small className='block text-center text-base md:text-lg lg:text-lg font-sans not-italic font-medium mt-1 lg:mt-3 text-stone-500'>{cite}</small>
+    </h2>
   )
 }
 

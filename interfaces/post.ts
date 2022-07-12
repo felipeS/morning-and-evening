@@ -1,6 +1,11 @@
 import type Author from './author'
 
-type PostType = {
+export type Verse = {
+  text: string
+  cite: string
+}
+
+export type PostType = {
   slug: string
   title: string
   date: string
@@ -13,6 +18,5 @@ type PostType = {
   content: string
   verse: string
   cite: string
+  verses: Verse[]
 }
-
-export default PostType
