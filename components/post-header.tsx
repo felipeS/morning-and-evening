@@ -23,7 +23,7 @@ const PostHeader = ({ title, author, verses }: PostHeaderProps) => {
       </div>
       <div className='max-w-4xl mx-auto'>
         {verses.map((verse) => (
-          <Verse verse={verse.text} cite={verse.cite} />
+          <Verse key={verse.cite} verse={verse.text} cite={verse.cite} />
         ))}
       </div>
     </>
