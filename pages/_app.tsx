@@ -1,5 +1,5 @@
 import { DefaultSeo } from 'next-seo';
-import App, { AppProps } from 'next/app'
+import App, { AppContext, AppProps } from 'next/app'
 import { useRouter } from 'next/router';
 import '../styles/index.css'
 
