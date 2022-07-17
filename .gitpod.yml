@@ -4,4 +4,4 @@
 
 tasks:
   - init: yarn install
-    command: yarn start
+    command: yarn dev
