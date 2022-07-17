@@ -1,3 +1,4 @@
+import PlausibleProvider from 'next-plausible';
 import { DefaultSeo } from 'next-seo';
 import { AppProps } from 'next/app'
 import { useRouter } from 'next/router';
@@ -7,9 +8,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const canonicalUrl = (`https://mañanaynoche.com` + (router.asPath === "/" ? "": router.asPath)).split("?")[0];
   return (
-    <>
+    <PlausibleProvider domain="xn--maanaynoche-2db.com">
       <DefaultSeo canonical={canonicalUrl} />
       <Component {...pageProps} />
-    </>
+    </PlausibleProvider>
   )
 }
