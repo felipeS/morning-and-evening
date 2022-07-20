@@ -1044,6 +1044,11 @@ react-dom@^18.2.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
 
+react-reftagger@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-reftagger/-/react-reftagger-2.1.0.tgz#5aa70a903fb82b7bc9591ff4c443711c299463ad"
+  integrity sha512-USKROYm3ZaFj73KpsAgQWsfnr8eWuIWR22AjRIjPaKrRIEe/mi8WLUxb3k6uWcCimCOd7kpiqeJFpyMHkX65kw==
+
 react@^18.2.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react/-/react-18.2.0.tgz"

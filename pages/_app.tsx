@@ -2,6 +2,7 @@ import { DefaultSeo } from 'next-seo';
 import { AppProps } from 'next/app'
 import { useRouter } from 'next/router';
 import '../styles/index.css'
+import '../styles/RefTagger.css'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();

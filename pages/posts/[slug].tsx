@@ -10,6 +10,7 @@ import PostTitle from '../../components/post-title'
 import Head from 'next/head'
 import markdownToHtml from '../../lib/markdownToHtml'
 import { PostType } from '../../interfaces/post'
+import { RefTagger } from 'react-reftagger'
 
 type Props = {
   post: PostType
@@ -45,6 +46,7 @@ export default function Post({ post, morePosts, preview }: Props) {
                 />
               </div>
               <PostBody content={post.content} />
+              <RefTagger language="es" bibleVersion="NVI" roundCorners socialSharing={[]} noSearchTagNames={[]}/>
             </article>
           </>
         )}
