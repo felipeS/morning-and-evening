@@ -51,12 +51,13 @@ export default function Index({ allPosts }: Props) {
         <Container>
           <Intro />
           {heroPost && (
-            <>
-              {isToday && (
-                <h2 className="mb-4 text-2xl md:text-3xl font-bold tracking-tighter leading-tight text-gray-500">
-                  Lectura de Hoy
-                </h2>
-              )}
+            <div className="mb-24 md:mb-32">
+              <div className="flex items-center justify-center mb-8 md:mb-12">
+                 <span className="bg-black text-white px-4 py-1 font-sans uppercase text-sm tracking-widest font-bold">
+                   {isToday ? 'Lectura de Hoy' : 'Destacado'}
+                 </span>
+                 <div className="flex-grow border-t border-gray-300 ml-4"></div>
+              </div>
               <HeroPost
                 title={heroPost.title}
                 coverImage={heroPost.coverImage}
@@ -65,9 +66,19 @@ export default function Index({ allPosts }: Props) {
                 slug={heroPost.slug}
                 excerpt={heroPost.excerpt}
               />
-            </>
+            </div>
           )}
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+          {morePosts.length > 0 && (
+             <>
+               <div className="flex items-center mb-16">
+                  <h2 className="text-3xl md:text-5xl font-serif font-bold tracking-tighter leading-tight mr-8">
+                    Archivo
+                  </h2>
+                  <div className="flex-grow border-t border-gray-200"></div>
+               </div>
+               <MoreStories posts={morePosts} />
+             </>
+          )}
         </Container>
       </Layout>
     </>
