@@ -1,12 +1,12 @@
 import Avatar from './avatar'
 import PostTitle from './post-title'
 import type Author from '../interfaces/author'
-import { Verse } from '../interfaces/post'
+import type { Verse as VerseType } from '../interfaces/post'
 
 type PostHeaderProps = {
   title: string
   author: Author
-  verses: Verse[]
+  verses: VerseType[]
 }
 
 const PostHeader = ({ title, author, verses }: PostHeaderProps) => {
