@@ -1,7 +1,7 @@
 @reference "../styles/index.css";
 
 .markdown {
-  @apply text-lg leading-loose;
+  @apply text-lg leading-loose text-stone-800 dark:text-stone-200;
 }
 
 .markdown p,
@@ -12,16 +12,17 @@
 }
 
 .markdown blockquote {
-  @apply pl-8 pt-1 pr-8 pb-1 border-l-4 bg-neutral-100 text-neutral-600 border-indigo-500;
+  @apply pl-8 pt-1 pr-8 pb-1 border-l-4 bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 border-amber-600 dark:border-amber-400;
 }
 
 .markdown h2 {
-  @apply text-3xl mt-12 mb-4 leading-snug;
+  @apply text-3xl mt-12 mb-4 leading-snug text-stone-800 dark:text-stone-100;
 }
 
 .markdown h3 {
-  @apply text-2xl mt-8 mb-4 leading-snug;
+  @apply text-2xl mt-8 mb-4 leading-snug text-stone-800 dark:text-stone-100;
 }
+
 .markdown a {
-  @apply underline underline-offset-4;
+  @apply underline underline-offset-4 text-amber-700 dark:text-amber-400;
 }

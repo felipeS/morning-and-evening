@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Container from "../components/container"
 import HeroPost from "../components/hero-post"
-import Intro from "../components/intro"
 import Layout from "../components/layout"
 import MoreStories from '../components/more-stories'
 import { PostType } from "../interfaces/post"
@@ -21,8 +20,6 @@ export default function Custom404({allPosts}: Props) {
           <title>Página no encontrada | Mañana y Noche por Charles Spurgeon</title>
         </Head>
         <Container>
-          <h1>Página no encontrada</h1>
-          <Intro />
           {heroPost && (
             <HeroPost
               title={heroPost.title}
