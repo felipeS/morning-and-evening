@@ -1,3 +1,11 @@
 .rtBibleRef {
-    @apply underline text-amber-700 dark:text-amber-400;
+    @apply underline;
+  }
+
+.rtBibleRef {
+    color: #b45309;
+  }
+
+:global(.dark) .rtBibleRef {
+    color: #fbbf24;
   }
