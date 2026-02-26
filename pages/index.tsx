@@ -24,8 +24,8 @@ export default function Index({ allPosts }: Props) {
         {/* Hero Section - Latest Post */}
         {heroPost && (
           <section className="relative min-h-[70vh] flex items-center justify-center bg-gradient-to-b from-stone-50 to-stone-100 dark:from-stone-900 dark:to-stone-800">
-            {/* Subtle background pattern */}
-            <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')]"></div>
+            {/* Subtle texture using CSS */}
+            <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-stone-400 via-transparent to-transparent"></div>
             
             <Container>
               <div className="max-w-4xl mx-auto text-center relative z-10">
@@ -47,7 +47,7 @@ export default function Index({ allPosts }: Props) {
                 {/* Date & Read More */}
                 <div className="flex flex-col md:flex-row items-center justify-center gap-4 text-stone-500 dark:text-stone-400">
                   <time className="text-sm">
-                    {new Date(heroPost.date).toLocaleDateString('es-ES', { 
+                    {new Date(heroPost.date + 'T00:00:00').toLocaleDateString('es-ES', { 
                       weekday: 'long', 
                       year: 'numeric', 
                       month: 'long', 
@@ -92,7 +92,7 @@ export default function Index({ allPosts }: Props) {
                       <Link href={`/posts/${post.slug}`} className="block">
                         <div className="bg-stone-50 dark:bg-stone-800 rounded-lg p-6 h-full hover:shadow-lg transition-shadow duration-300">
                           <time className="text-xs font-medium text-stone-400 uppercase tracking-wider">
-                            {new Date(post.date).toLocaleDateString('es-ES', { 
+                            {new Date(post.date + 'T00:00:00').toLocaleDateString('es-ES', { 
                               day: 'numeric', 
                               month: 'short'
                             })}
