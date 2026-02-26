@@ -1,11 +1,8 @@
 .rtBibleRef {
-    @apply underline;
-  }
-
-.rtBibleRef {
     color: #b45309;
+    text-decoration: underline;
   }
 
-:global(.dark) .rtBibleRef {
+html.dark .rtBibleRef {
     color: #fbbf24;
   }
