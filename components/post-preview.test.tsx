@@ -18,7 +18,7 @@ describe('PostPreview', () => {
     render(<PostPreview {...props} />)
 
     expect(screen.getByText('Test Post')).toBeInTheDocument()
-    expect(screen.getByText('Test excerpt')).toBeInTheDocument()
+    expect(screen.getByText(/Test excerpt/)).toBeInTheDocument()
     expect(screen.getByText('Test Author')).toBeInTheDocument()
   })
 })

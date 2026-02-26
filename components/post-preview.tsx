@@ -1,6 +1,4 @@
-import Avatar from './avatar'
 import DateFormatter from './date-formatter'
-import CoverImage from './cover-image'
 import Link from 'next/link'
 import type Author from '../interfaces/author'
 
@@ -15,26 +13,38 @@ type Props = {
 
 const PostPreview = ({
   title,
+  date,
   excerpt,
   author,
   slug,
 }: Props) => {
   return (
-    <div>
-      {/* <div className="mb-5">
-        <CoverImage slug={slug} title={title} src={coverImage} />
-      </div> */}
-      <h3 className="text-3xl mb-3 leading-snug tracking-tight font-bold">
-        <Link as={`/posts/${slug}`} href="/posts/[slug]" className="hover:underline">
+    <article className="group flex flex-col gap-3 p-6 rounded-xl bg-white border border-stone-100 hover:border-amber-200 hover:shadow-sm transition-all duration-200">
+      <div className="flex items-center justify-between">
+        <span className="text-xs font-medium text-stone-400 tracking-wide uppercase">
+          <DateFormatter dateString={date} />
+        </span>
+      </div>
+
+      <h3 className="text-xl md:text-2xl font-bold font-serif leading-snug text-stone-900 group-hover:text-amber-800 transition-colors duration-200">
+        <Link as={`/posts/${slug}`} href="/posts/[slug]" className="hover:underline underline-offset-2">
           {title}
         </Link>
       </h3>
-      {/* <div className="text-lg mb-4">
-        <DateFormatter dateString={date} />
-      </div> */}
-      <p className="text-lg italic font-serif font-bold mb-4">{excerpt}</p>
-      <Avatar name={author.name} picture={author.picture} />
-    </div>
+
+      <p className="text-base font-serif italic text-stone-500 leading-relaxed line-clamp-2">
+        &ldquo;{excerpt}&rdquo;
+      </p>
+
+      <div className="mt-auto pt-3 border-t border-stone-100 flex items-center gap-2">
+        <img
+          src={author.picture}
+          alt={author.name}
+          className="w-7 h-7 rounded-full object-cover"
+        />
+        <span className="text-sm text-stone-500">{author.name}</span>
+      </div>
+    </article>
   )
 }
 
