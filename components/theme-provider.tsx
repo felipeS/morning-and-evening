@@ -20,14 +20,20 @@ function useTheme() {
 
 export { useTheme }
 
+const validThemes: Theme[] = ['light', 'dark', 'system']
+
+function isValidTheme(value: string): value is Theme {
+  return validThemes.includes(value as Theme)
+}
+
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>('system')
   const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light')
 
   useEffect(() => {
     // Get stored preference or default to system
-    const stored = localStorage.getItem('theme') as Theme | null
-    if (stored) {
+    const stored = localStorage.getItem('theme')
+    if (stored && isValidTheme(stored)) {
       setTheme(stored)
     }
   }, [])

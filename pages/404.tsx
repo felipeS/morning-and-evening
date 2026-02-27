@@ -20,6 +20,10 @@ export default function Custom404({allPosts}: Props) {
           <title>Página no encontrada | Mañana y Noche por Charles Spurgeon</title>
         </Head>
         <Container>
+          <div className="py-8 text-center">
+            <h1 className="text-2xl font-bold text-stone-800 dark:text-stone-100 mb-2">Página no encontrada</h1>
+            <p className="text-stone-600 dark:text-stone-300">Aquí tienes los devocionales más recientes:</p>
+          </div>
           {heroPost && (
             <HeroPost
               title={heroPost.title}
