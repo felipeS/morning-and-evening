@@ -70,14 +70,6 @@
   letter-spacing: -1px;
 }
 
-.verseReference {
-  font-size: 14px;
-  text-transform: uppercase;
-  opacity: 0.6;
-  margin-bottom: 30px;
-  display: block;
-}
-
 .articleBody {
   font-family: var(--font-serif);
   font-size: 22px;
