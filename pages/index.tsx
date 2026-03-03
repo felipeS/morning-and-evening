@@ -31,6 +31,7 @@ type Props = {
     title: string
     dateLabel: string
     verseReference: string
+    verseCite: string
     verseText: string
     content: string
   }
@@ -76,7 +77,7 @@ export default function Index({ timeline, active, companion }: Props) {
             <article className={styles.articleBody}>
               <blockquote className={styles.highlightVerse}>
                 <p className={styles.highlightVerseText}>{active.verseText}</p>
-                <cite className={styles.highlightVerseCite}>{active.verseReference}</cite>
+                <cite className={styles.highlightVerseCite}>{active.verseCite}</cite>
               </blockquote>
               <div dangerouslySetInnerHTML={{ __html: active.content }} />
             </article>
@@ -181,6 +182,7 @@ export const getStaticProps = async () => {
         title: morningPost.title,
         dateLabel: formatDateLabel(morningPost.date),
         verseReference: `Morning · ${getVerseReference(morningPost)}`,
+        verseCite: getVerseReference(morningPost),
         verseText: getVerseText(morningPost),
         content: activeContent,
       },
