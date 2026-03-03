@@ -36,6 +36,7 @@ type Props = {
   }
   companion: {
     title: string
+    verseReference: string
     excerpt: string
     slug: string
   } | null
@@ -126,7 +127,7 @@ export default function Index({ timeline, active, companion }: Props) {
 }
 
 export const getStaticProps = async () => {
-  const allPosts = getAllPosts(['slug', 'title', 'date', 'excerpt', 'content', 'verses']) as HomePost[]
+  const allPosts = getAllPosts(['slug', 'title', 'date', 'excerpt', 'content', 'verses']) as unknown as HomePost[]
 
   const grouped = new Map<string, HomePost[]>()
   for (const post of allPosts) {
