@@ -120,6 +120,39 @@
   margin-bottom: 32px;
 }
 
+.articleContent blockquote {
+  margin: 36px 0;
+  padding: 28px 34px 24px;
+  border-left: 8px solid #4f46e5;
+  border-right: 2px solid rgba(79, 70, 229, 0.2);
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.16), rgba(255, 255, 255, 0.95));
+  box-shadow: 0 14px 30px rgba(79, 70, 229, 0.18);
+  position: relative;
+}
+
+.articleContent blockquote::before {
+  content: '“';
+  position: absolute;
+  top: -8px;
+  left: 10px;
+  font-family: var(--font-serif);
+  font-size: 74px;
+  line-height: 1;
+  color: rgba(79, 70, 229, 0.28);
+}
+
+.articleContent blockquote p {
+  margin: 10px 0;
+  font-size: 30px;
+  line-height: 1.35;
+  font-style: italic;
+}
+
+.articleContent blockquote p:last-child {
+  margin-bottom: 0;
+}
+
 .highlightVerse {
   margin: 0 0 40px;
   padding: 20px 26px 22px;
