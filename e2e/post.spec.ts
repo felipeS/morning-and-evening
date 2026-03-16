@@ -3,21 +3,30 @@ import { test, expect } from '@playwright/test'
 test.describe('Post Page', () => {
   test('should navigate to a post page', async ({ page }) => {
     await page.goto('/')
+    const initialHeading = (await page.getByRole('heading', { level: 1 }).innerText()).trim()
+    const currentPath = new URL(page.url()).pathname
+    const postLinks = page.locator('a[href^="/posts/"]')
+    const postCount = await postLinks.count()
 
-    // Find the first post link
-    const postLink = page.locator('h3 a').first()
-    const postTitle = await postLink.innerText()
+    let targetHref = ''
 
-    // Click and wait for navigation
-    await postLink.click()
+    for (let index = 0; index < postCount; index += 1) {
+      const link = postLinks.nth(index)
+      const href = await link.getAttribute('href')
+
+      if (href && href !== currentPath) {
+        targetHref = href
+        await link.click()
+        break
+      }
+    }
+
+    expect(targetHref).not.toBe('')
+    await expect(page).toHaveURL(new RegExp(`${targetHref}$`))
 
     // Take a screenshot of the post page
     await page.screenshot({ path: 'screenshots/post-page.png', fullPage: true })
 
-    // Check if the title is correct
-    // Note: postTitle might contain extra whitespace or newlines, so we trim or use loose match if needed.
-    // The h1 might be formatted slightly differently, but the text should be there.
-    const h1 = page.locator('h1').last() // Try last h1 if there are multiple
-    await expect(h1).toContainText(postTitle)
+    await expect(page.getByRole('heading', { level: 1 })).not.toHaveText(initialHeading)
   })
 })

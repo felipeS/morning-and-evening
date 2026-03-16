@@ -66,32 +66,34 @@ export default function DailyReaderShell({ timeline, active, companion }: Props)
           )}
         </main>
 
-        <aside className={styles.timelineColumn}>
-          {timeline.map((day) => (
-            <div key={day.dateKey} className={styles.timelineDay}>
-              <div className={styles.timelineDot} />
-              <div className={styles.timelineDateLabel}>{day.dateLabel}</div>
-              {day.sessions.map((session) => (
-                <Link
-                  href={`/posts/${session.slug}`}
-                  key={session.slug}
-                  className={`${styles.sessionCard} ${session.active ? styles.active : ''}`}
-                >
-                  <div className={styles.sessionTag}>
-                    <SessionIcon
-                      type={session.type}
-                      className={`${styles.sessionIcon} ${
-                        session.type === 'Morning' ? styles.morningIcon : styles.eveningIcon
-                      }`}
-                    />
-                    <span className={styles.sessionLabel}>{session.label}</span>
-                  </div>
-                  <div className={styles.sessionVerse}>{session.referenceLabel}</div>
-                </Link>
-              ))}
-            </div>
-          ))}
-        </aside>
+        <div className={styles.timelineTray}>
+          <aside className={styles.timelineColumn}>
+            {timeline.map((day) => (
+              <div key={day.dateKey} className={styles.timelineDay}>
+                <div className={styles.timelineDot} />
+                <div className={styles.timelineDateLabel}>{day.dateLabel}</div>
+                {day.sessions.map((session) => (
+                  <Link
+                    href={`/posts/${session.slug}`}
+                    key={session.slug}
+                    className={`${styles.sessionCard} ${session.active ? styles.active : ''}`}
+                  >
+                    <div className={styles.sessionTag}>
+                      <SessionIcon
+                        type={session.type}
+                        className={`${styles.sessionIcon} ${
+                          session.type === 'Morning' ? styles.morningIcon : styles.eveningIcon
+                        }`}
+                      />
+                      <span className={styles.sessionLabel}>{session.label}</span>
+                    </div>
+                    <div className={styles.sessionVerse}>{session.referenceLabel}</div>
+                  </Link>
+                ))}
+              </div>
+            ))}
+          </aside>
+        </div>
       </div>
     </div>
   )
