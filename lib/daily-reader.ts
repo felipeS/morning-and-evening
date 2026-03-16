@@ -1,14 +1,15 @@
 import { PostType, Verse } from '../interfaces/post'
 import markdownToHtml from './markdownToHtml'
+import { parsePostDate } from './post-date'
+import { getReadTimeMinutes } from './reading-time'
+import { getVerseCitation, getVerseReferenceOnly } from './verse-format'
 
 type SessionType = 'Morning' | 'Evening'
 
 export type Session = {
   type: SessionType
-  icon: string
-  label: SessionType
-  title: string
-  verse: string
+  label: string
+  referenceLabel: string
   slug: string
   active?: boolean
 }
@@ -29,6 +30,7 @@ export type ReaderProps = {
     verseCite: string
     verseText: string
     content: string
+    readTimeMinutes: number
   }
   companion: {
     title: string
@@ -38,18 +40,27 @@ export type ReaderProps = {
   } | null
 }
 
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+const MONTHS = ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic']
 
 export const formatDateLabel = (dateInput: string) => {
-  const date = new Date(dateInput)
-  return `${MONTHS[date.getUTCMonth()]} ${String(date.getUTCDate()).padStart(2, '0')}`
+  const date = parsePostDate(dateInput)
+  if (Number.isNaN(date.getTime())) return dateInput.slice(0, 10)
+  return `${MONTHS[date.getMonth()]} ${String(date.getDate()).padStart(2, '0')}`
 }
 
 export const getSessionTypeFromSlug = (slug: string): SessionType =>
   slug.toUpperCase().endsWith('PM') ? 'Evening' : 'Morning'
 
-export const getVerseReference = (post: ReaderPost) => post.verses?.[0]?.cite ?? ''
+export const getSessionLabel = (type: SessionType) => (type === 'Morning' ? 'Mañana' : 'Noche')
+
+export const getVerseReference = (post: ReaderPost) =>
+  post.verses?.[0] ? getVerseCitation(post.verses[0]) : ''
 export const getVerseText = (post: ReaderPost) => post.verses?.[0]?.text ?? ''
+export const getSessionReferenceLabel = (post: ReaderPost) => {
+  const verseCount = post.verses?.length ?? 0
+  if (verseCount > 1) return `${verseCount} pasajes`
+  return post.verses?.[0] ? getVerseReferenceOnly(post.verses[0]) : ''
+}
 
 const normalizeVerses = (verses: unknown): Verse[] => {
   if (!Array.isArray(verses)) return []
@@ -58,7 +69,7 @@ const normalizeVerses = (verses: unknown): Verse[] => {
       typeof verse === 'object' &&
       verse !== null &&
       typeof (verse as Verse).text === 'string' &&
-      typeof (verse as Verse).cite === 'string'
+      (typeof (verse as Verse).cite === 'string' || typeof (verse as Verse).verse === 'string')
   )
 }
 
@@ -106,10 +117,8 @@ export const buildReaderProps = async (allPosts: ReaderPost[], activeSlug?: stri
         const type = getSessionTypeFromSlug(post.slug)
         return {
           type,
-          icon: type === 'Morning' ? '☀' : '🌙',
-          label: type,
-          title: post.title,
-          verse: getVerseReference(post),
+          label: getSessionLabel(type),
+          referenceLabel: getSessionReferenceLabel(post),
           slug: post.slug,
           active: post.slug === activePost.slug,
         }
@@ -130,6 +139,7 @@ export const buildReaderProps = async (allPosts: ReaderPost[], activeSlug?: stri
       verseCite: getVerseReference(activePost),
       verseText: getVerseText(activePost),
       content: activeContent,
+      readTimeMinutes: getReadTimeMinutes(activePost.content || ''),
     },
     companion: companionPost
       ? {

@@ -1,18 +1,37 @@
+import { Suspense, lazy } from 'react'
 import Link from 'next/link'
 import styles from '../pages/home.module.css'
 import { ReaderProps } from '../lib/daily-reader'
+import { getSessionTypeFromSlug } from '../lib/daily-reader'
+import { formatReadTime } from '../lib/reading-time'
+import SessionIcon from './session-icon'
 
 type Props = ReaderProps
 
+const ReadTimeLabel = lazy(() => import('./read-time-label'))
+
 export default function DailyReaderShell({ timeline, active, companion }: Props) {
+  const companionType = companion ? getSessionTypeFromSlug(companion.slug) : null
+
   return (
     <div className={styles.page}>
       <div className={styles.appContainer}>
+        <aside className={styles.introPanel}>
+          <div className={styles.introEyebrow}>Charles Spurgeon</div>
+          <h2 className={styles.introTitle}>Mañana y Noche</h2>
+          <p className={styles.introDescription}>
+            Lecturas devocionales para la mañana y la noche, con meditaciones breves de Charles Spurgeon en
+            español.
+          </p>
+        </aside>
+
         <main className={styles.readingSurface}>
           <div className={styles.articleHeader}>
             <div className={styles.articleMeta}>
-              <span>Daily Devotion</span>
-              <span>5 Min Read</span>
+              <span>Charles Spurgeon</span>
+              <Suspense fallback={<span>{formatReadTime(active.readTimeMinutes)}</span>}>
+                <ReadTimeLabel minutes={active.readTimeMinutes} />
+              </Suspense>
               <span>{active.dateLabel}</span>
             </div>
             <h1 className={styles.title}>{active.title}</h1>
@@ -28,15 +47,18 @@ export default function DailyReaderShell({ timeline, active, companion }: Props)
 
           {companion && (
             <section className={styles.companionSection}>
-              <div className={styles.sectionTitle}>Companion Reading · {active.dateLabel}</div>
+              <div className={styles.sectionTitle}>Lectura complementaria · {active.dateLabel}</div>
               <div className={styles.companionCard}>
-                <div className={styles.companionIcon}>{companion.slug.toUpperCase().endsWith('PM') ? '🌙' : '☀'}</div>
+                <SessionIcon
+                  type={companionType!}
+                  className={`${styles.companionIcon} ${companionType === 'Morning' ? styles.morningIcon : styles.eveningIcon}`}
+                />
                 <div className={styles.companionBody}>
                   <div className={styles.companionVerse}>{companion.verseReference}</div>
                   <div className={styles.companionTitle}>{companion.title}</div>
                   <p className={styles.companionText}>{companion.excerpt}</p>
                   <Link href={`/posts/${companion.slug}`} className={styles.companionCta}>
-                    Read this companion →
+                    Leer esta lectura →
                   </Link>
                 </div>
               </div>
@@ -56,11 +78,15 @@ export default function DailyReaderShell({ timeline, active, companion }: Props)
                   className={`${styles.sessionCard} ${session.active ? styles.active : ''}`}
                 >
                   <div className={styles.sessionTag}>
-                    <span className={styles.sessionIcon}>{session.icon}</span>
+                    <SessionIcon
+                      type={session.type}
+                      className={`${styles.sessionIcon} ${
+                        session.type === 'Morning' ? styles.morningIcon : styles.eveningIcon
+                      }`}
+                    />
                     <span className={styles.sessionLabel}>{session.label}</span>
                   </div>
-                  <div className={styles.sessionTitle}>{session.title}</div>
-                  <div className={styles.sessionVerse}>{session.verse}</div>
+                  <div className={styles.sessionVerse}>{session.referenceLabel}</div>
                 </Link>
               ))}
             </div>

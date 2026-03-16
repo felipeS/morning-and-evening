@@ -2,7 +2,10 @@ import type Author from './author'
 
 export type Verse = {
   text: string
-  cite: string
+  cite?: string
+  verse?: string
+  bibleVersion?: string
+  'bible-version'?: string
 }
 
 export type PostType = {
