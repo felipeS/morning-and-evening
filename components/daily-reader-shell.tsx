@@ -1,8 +1,9 @@
-import { Suspense, lazy } from 'react'
+import { Suspense, lazy, useEffect, useMemo, useRef, useState } from 'react'
 import Link from 'next/link'
 import styles from '../pages/home.module.css'
 import { ReaderProps } from '../lib/daily-reader'
-import { getSessionTypeFromSlug } from '../lib/daily-reader'
+import { getCurrentReadingSlug, getSessionTypeForDate, getSessionTypeFromSlug } from '../lib/daily-reader'
+import { parsePostDate } from '../lib/post-date'
 import { formatReadTime } from '../lib/reading-time'
 import SessionIcon from './session-icon'
 
@@ -11,14 +12,43 @@ type Props = ReaderProps
 const ReadTimeLabel = lazy(() => import('./read-time-label'))
 
 export default function DailyReaderShell({ timeline, active, companion }: Props) {
+  const [now, setNow] = useState<Date | null>(null)
+  const activeDayRef = useRef<HTMLDivElement | null>(null)
   const companionType = companion ? getSessionTypeFromSlug(companion.slug) : null
+  const activeDayKey = timeline.find((day) => day.sessions.some((session) => session.active))?.dateKey
+  const activeSessionSlug = useMemo(
+    () => timeline.flatMap((day) => day.sessions).find((session) => session.active)?.slug ?? null,
+    [timeline]
+  )
+  const currentDaySessionType = now ? getSessionTypeForDate(now) : null
+  const currentReadingSlug = now ? getCurrentReadingSlug(timeline, now) : null
+  const homeHref = currentReadingSlug ? `/posts/${currentReadingSlug}` : activeSessionSlug ? `/posts/${activeSessionSlug}` : '/'
+
+  useEffect(() => {
+    setNow(new Date())
+  }, [])
+
+  useEffect(() => {
+    if (!activeDayRef.current) return
+
+    const prefersReducedMotion =
+      typeof window.matchMedia === 'function' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    activeDayRef.current.scrollIntoView({
+      block: 'start',
+      inline: 'nearest',
+      behavior: prefersReducedMotion ? 'auto' : 'smooth',
+    })
+  }, [activeDayKey])
 
   return (
     <div className={styles.page}>
       <div className={styles.appContainer}>
         <aside className={styles.introPanel}>
           <div className={styles.introEyebrow}>Charles Spurgeon</div>
-          <h2 className={styles.introTitle}>Mañana y Noche</h2>
+          <h2 className={styles.introTitle}>
+            <Link href={homeHref}>Mañana y Noche</Link>
+          </h2>
           <p className={styles.introDescription}>
             Lecturas devocionales para la mañana y la noche, con meditaciones breves de Charles Spurgeon en
             español.
@@ -34,7 +64,9 @@ export default function DailyReaderShell({ timeline, active, companion }: Props)
               </Suspense>
               <span>{active.dateLabel}</span>
             </div>
-            <h1 className={styles.title}>{active.title}</h1>
+            <h1 className={styles.title}>
+              <Link href={homeHref}>{active.title}</Link>
+            </h1>
           </div>
 
           <article className={styles.articleBody}>
@@ -68,30 +100,48 @@ export default function DailyReaderShell({ timeline, active, companion }: Props)
 
         <div className={styles.timelineTray}>
           <aside className={styles.timelineColumn}>
-            {timeline.map((day) => (
-              <div key={day.dateKey} className={styles.timelineDay}>
-                <div className={styles.timelineDot} />
-                <div className={styles.timelineDateLabel}>{day.dateLabel}</div>
-                {day.sessions.map((session) => (
-                  <Link
-                    href={`/posts/${session.slug}`}
-                    key={session.slug}
-                    className={`${styles.sessionCard} ${session.active ? styles.active : ''}`}
-                  >
-                    <div className={styles.sessionTag}>
-                      <SessionIcon
-                        type={session.type}
-                        className={`${styles.sessionIcon} ${
-                          session.type === 'Morning' ? styles.morningIcon : styles.eveningIcon
+            {timeline.map((day) => {
+              const dayDate = parsePostDate(day.dateKey)
+              const isCurrentDay =
+                now !== null && dayDate.getMonth() === now.getMonth() && dayDate.getDate() === now.getDate()
+
+              return (
+                <div
+                  key={day.dateKey}
+                  className={`${styles.timelineDay} ${isCurrentDay ? styles.today : ''}`}
+                  data-current-day={isCurrentDay}
+                  data-active-day={day.dateKey === activeDayKey}
+                  ref={day.dateKey === activeDayKey ? activeDayRef : undefined}
+                >
+                  <div className={styles.timelineDot} />
+                  <div className={styles.timelineDateLabel}>{day.dateLabel}</div>
+                  {day.sessions.map((session) => {
+                    const isCurrentSession = isCurrentDay && session.type === currentDaySessionType
+                    return (
+                      <Link
+                        href={`/posts/${session.slug}`}
+                        key={session.slug}
+                        className={`${styles.sessionCard} ${session.active ? styles.active : ''} ${
+                          isCurrentSession ? styles.currentSession : ''
                         }`}
-                      />
-                      <span className={styles.sessionLabel}>{session.label}</span>
-                    </div>
-                    <div className={styles.sessionVerse}>{session.referenceLabel}</div>
-                  </Link>
-                ))}
-              </div>
-            ))}
+                        data-current-session={isCurrentSession}
+                      >
+                        <div className={styles.sessionTag}>
+                          <SessionIcon
+                            type={session.type}
+                            className={`${styles.sessionIcon} ${
+                              session.type === 'Morning' ? styles.morningIcon : styles.eveningIcon
+                            }`}
+                          />
+                          <span className={styles.sessionLabel}>{session.label}</span>
+                        </div>
+                        <div className={styles.sessionVerse}>{session.referenceLabel}</div>
+                      </Link>
+                    )
+                  })}
+                </div>
+              )
+            })}
           </aside>
         </div>
       </div>

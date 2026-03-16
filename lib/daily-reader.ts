@@ -53,6 +53,8 @@ export const getSessionTypeFromSlug = (slug: string): SessionType =>
 
 export const getSessionLabel = (type: SessionType) => (type === 'Morning' ? 'Mañana' : 'Noche')
 
+export const getSessionTypeForDate = (date: Date): SessionType => (date.getHours() < 12 ? 'Morning' : 'Evening')
+
 export const getVerseReference = (post: ReaderPost) =>
   post.verses?.[0] ? getVerseCitation(post.verses[0]) : ''
 export const getVerseText = (post: ReaderPost) => post.verses?.[0]?.text ?? ''
@@ -150,4 +152,21 @@ export const buildReaderProps = async (allPosts: ReaderPost[], activeSlug?: stri
         }
       : null,
   }
+}
+
+export const getCurrentReadingSlug = (timeline: TimelineDay[], now: Date): string | null => {
+  if (timeline.length === 0) return null
+
+  const preferredType = getSessionTypeForDate(now)
+
+  const matchingDay = timeline.find((day) => {
+    const date = parsePostDate(day.dateKey)
+    return date.getMonth() === now.getMonth() && date.getDate() === now.getDate()
+  })
+
+  const fallbackDay = timeline[timeline.length - 1]
+  const day = matchingDay ?? fallbackDay
+  const preferredSession = day.sessions.find((session) => session.type === preferredType)
+
+  return preferredSession?.slug ?? day.sessions[0]?.slug ?? null
 }
