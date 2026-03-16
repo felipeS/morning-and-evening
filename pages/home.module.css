@@ -120,6 +120,36 @@
   margin-bottom: 32px;
 }
 
+.articleContent blockquote {
+  margin: 34px 0;
+  padding: 10px 0 10px 26px;
+  border-left: 3px solid rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.articleContent blockquote::before {
+  content: '“';
+  position: absolute;
+  top: -14px;
+  left: 4px;
+  font-family: var(--font-serif);
+  font-size: 52px;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.16);
+}
+
+.articleContent blockquote p {
+  margin: 8px 0;
+  font-size: inherit;
+  line-height: 1.4;
+  font-style: italic;
+  letter-spacing: -0.1px;
+}
+
+.articleContent blockquote p:last-child {
+  margin-bottom: 0;
+}
+
 .highlightVerse {
   margin: 0 0 40px;
   padding: 20px 26px 22px;

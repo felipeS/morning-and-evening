@@ -12,7 +12,20 @@
 }
 
 .markdown blockquote {
-  @apply pl-8 pt-1 pr-8 pb-1 border-l-4 bg-neutral-100 text-neutral-600 border-indigo-500;
+  @apply relative my-8 border-l-4 border-neutral-300 pl-6 italic text-neutral-700;
+}
+
+.markdown blockquote::before {
+  content: '“';
+  @apply pointer-events-none absolute -left-1 -top-4 text-5xl font-serif leading-none text-neutral-300;
+}
+
+.markdown blockquote p {
+  @apply my-2;
+}
+
+.markdown blockquote p:last-child {
+  @apply mb-0;
 }
 
 .markdown h2 {
