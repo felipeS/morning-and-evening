@@ -42,7 +42,7 @@ export default function DailyReaderShell({ timeline, active, companion }: Props)
               <p className={styles.highlightVerseText}>{active.verseText}</p>
               <cite className={styles.highlightVerseCite}>{active.verseCite}</cite>
             </blockquote>
-            <div className={styles.articleContent} dangerouslySetInnerHTML={{ __html: active.content }} />
+            <div dangerouslySetInnerHTML={{ __html: active.content }} />
           </article>
 
           {companion && (
