@@ -2,6 +2,7 @@ import Avatar from './avatar'
 import PostTitle from './post-title'
 import type Author from '../interfaces/author'
 import type { Verse as VerseType } from '../interfaces/post'
+import { getVerseCitation } from '../lib/verse-format'
 
 type PostHeaderProps = {
   title: string
@@ -22,8 +23,8 @@ const PostHeader = ({ title, author, verses }: PostHeaderProps) => {
         </div>
       </div>
       <div className='max-w-4xl mx-auto'>
-        {verses.map((verse) => (
-          <Verse key={verse.cite} verse={verse.text} cite={verse.cite} />
+        {verses.map((verse, index) => (
+          <Verse key={`${getVerseCitation(verse)}-${index}`} verse={verse.text} cite={getVerseCitation(verse)} />
         ))}
       </div>
     </>

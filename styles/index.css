@@ -1,2 +1,18 @@
 @import "tailwindcss";
 @import "tailwindcss/utilities";
+
+html,
+body,
+#__next {
+  height: 100%;
+}
+
+html,
+body {
+  margin: 0;
+  background: #000;
+}
+
+body {
+  overflow: hidden;
+}
